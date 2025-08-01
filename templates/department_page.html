@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  #hero-section .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
+    z-index: 1;
+  }
+
+  #hero-section h1 {
+    z-index: 2;
+  }
+</style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      <img src="{{ url_for('static', filename='images/gpd_logo.png') }}" alt="GPD Logo" width="40" height="40" class="me-2">
+      {{ dept_name }} Department
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="departmentsDropdown" role="button" data-bs-toggle="dropdown">Departments</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Computer') }}">Computer Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Civil') }}">Civil Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Electrical') }}">Electrical Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Electronic & Communication') }}">Electronic & Communication</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Mechanical') }}">Mechanical Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='CAD&DM') }}">CAD&DM</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="https://attendance-system-1-yqjg.onrender.com/">Attendance</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="padding-top: 80px;"></div>
+
+
+<!-- Hero Section -->
+<section id="hero-section" 
+  class="bg-light p-5 text-center text-white shadow-sm d-flex flex-column justify-content-center align-items-center" 
+  style="background-image: url('static/images/campus1.jpg'); background-size: cover; background-position: center; height: 40vh; position: relative;">
+
+  <div style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.5);"></div>
+  <h1 class="fw-bold position-relative">{{ dept_name }} Department</h1>
+</section>
+
+
+
+<!-- Department Content -->
+<div class="container py-5">
+
+  <!-- Vision & Mission -->
+  <div class="row text-center mb-5 p-4 rounded section-card fade-in">
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 border-0 shadow vision-box">
+        <div class="card-body">
+          <h4 class="card-title">🎯 Vision</h4>
+          <p class="card-text text-muted">{{ dept_info[0] }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 border-0 shadow mission-box">
+        <div class="card-body">
+          <h4 class="card-title">🚀 Mission</h4>
+          <p class="card-text text-muted">{{ dept_info[1].replace('\n', '<br>') | safe }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HoD Info -->
+  <div class="row align-items-center mb-5 p-4 rounded shadow-lg section-card fade-in">
+    <h4 class="mb-4">Head of Department 👩‍🏫👨‍🏫</h4>
+    <div class="col-md-3 text-center mb-3 mb-md-0">
+      <img src="{{ url_for('static', filename='uploads/' + dept_info[4]) }}" class="img-fluid rounded-circle shadow" style="height:200px; width:200px; object-fit:cover;">
+    </div>
+    <div class="col-md-9">
+      <h5>{{ dept_info[2] }}</h5>
+      <p>Email: <a href="mailto:{{ dept_info[3] }}">{{ dept_info[3] }}</a></p>
+    </div>
+  </div>
+
+  <!-- Faculty List -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Faculty Members 👩‍🏫👨‍🏫</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered bg-white shadow-sm">
+        <thead class="table-primary">
+          <tr>
+            <th>Sr. No.</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Qualification</th>
+            <th>Date of Joining</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for faculty in faculty_list %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ faculty[1] }}</td>
+            <td>{{ faculty[2] }}</td>
+            <td>{{ faculty[3] }}</td>
+            <td>{{ faculty[4] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Circulars -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Department Circulars 📢</h4>
+    <ul class="list-group list-group-flush">
+      {% for c in circulars %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div><b>{{ c[1] }}</b> - <span class="text-muted">{{ c[2] }}</span></div>
+        <a href="{{ url_for('static', filename=c[3]) }}" class="btn btn-sm btn-outline-primary" download>Download</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Subjects -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Subjects Offered 📖</h4>
+    <ul class="nav nav-tabs mb-3" id="semesterTabs" role="tablist">
+      {% for sem in range(1, 7) %}
+      <li class="nav-item">
+        <button class="nav-link {% if sem == 1 %}active{% endif %}" id="sem{{ sem }}-tab" data-bs-toggle="tab" data-bs-target="#sem{{ sem }}" type="button" role="tab">
+          Semester {{ sem }}
+        </button>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="tab-content">
+      {% for sem in range(1, 7) %}
+      <div class="tab-pane fade {% if sem == 1 %}show active{% endif %}" id="sem{{ sem }}" role="tabpanel">
+        <ul class="list-group list-group-flush">
+          {% for s in subjects if s[0] == sem %}
+          <li class="list-group-item"><strong>{{ s[1] }}</strong></li>
+          {% else %}
+          {% if loop.first %}<li class="list-group-item text-muted">No subjects available for Semester {{ sem }}</li>{% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Study Materials -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Study Materials 📚</h4>
+    <ul class="list-group list-group-flush">
+      {% for m in materials %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div><strong>Semester {{ m[0] }}:</strong> <span class="text-muted">{{ m[1] }}</span></div>
+        <a href="{{ url_for('static', filename=m[2]) }}" class="btn btn-sm btn-outline-success" download>Download</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Labs -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Lab Gallery 🏫</h4>
+    {% if labs %}
+      {% for lab in labs %}
+        {% set filename = lab[1].split('/')[-1].split('\\')[-1] %}
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm border-0">
+            <img src="{{ url_for('static', filename='images/labs/' + filename) }}" class="card-img-top" style="height: 250px; object-fit: cover;" alt="{{ lab[0] }}">
+            <div class="card-body">
+              <h5 class="card-title text-center">{{ lab[0] }}</h5>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted">No lab images uploaded yet.</p>
+    {% endif %}
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center p-3 fade-in">
+  <p class="mb-1">Government Polytechnic Dahod | Address | Contact: 1234567890 | Email: info@gp.dahod.in</p>
+  <div>
+    <a href="#" class="text-white me-2">Facebook</a> |
+    <a href="#" class="text-white ms-2">Instagram</a>
+  </div>
+</footer>
+
+<!-- Style -->
+<style>
+.main-bg {
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+}
+.section-heading {
+  color: #0d6efd;
+  font-weight: bold;
+}
+.section-card {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.vision-box {
+  border-left: 5px solid #0077b6;
+}
+.mission-box {
+  border-left: 5px solid #00b4d8;
+}
+.card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+#hero-section h1 {
+  z-index: 1;
+  position: relative;
+}
+</style>
+
+{% endblock %}

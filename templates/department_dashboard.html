@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .sidebar {
+        background: #0d6efd;
+        color: white;
+        min-height: 100vh;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .sidebar h4 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 12px 20px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: background 0.3s;
+        font-size: 1rem;
+    }
+
+    .sidebar a:hover {
+        background-color: #084298;
+    }
+
+    .dashboard-content {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        margin-top: 20px;
+    }
+
+    .quick-actions .btn {
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 767.98px) {
+        .sidebar {
+            min-height: auto;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .dashboard-content {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row flex-column flex-md-row">
+        <!-- Sidebar -->
+        <div class="col-12 col-md-3 sidebar mb-3 mb-md-0">
+            <h4>{{ department_name }} Dept</h4>
+            <a href="{{ url_for('edit_hod') }}"><i class="bi bi-person-lines-fill me-2"></i>Edit HoD Info</a>
+            <a href="{{ url_for('department_faculty') }}"><i class="bi bi-people-fill me-2"></i>Manage Faculty</a>
+            <a href="{{ url_for('upload_department_circular') }}"><i class="bi bi-upload me-2"></i>Upload Circulars</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-12 col-md-9">
+            <div class="dashboard-content">
+                <h2 class="text-primary fw-semibold">Welcome to {{ department_name }} Department Dashboard</h2>
+                <p class="lead">Use the sidebar to manage department-specific data such as HoD info, faculty records, and circulars. Ensure all data is up-to-date for a smooth academic experience.</p>
+                <hr>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions mt-4">
+                    <h5 class="fw-semibold mb-3">Quick Actions</h5>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <a href="{{ url_for('edit_hod') }}" class="btn btn-outline-primary w-100">
+                                <i class="bi bi-person-lines-fill me-1"></i> Edit HoD
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <a href="{{ url_for('department_faculty') }}" class="btn btn-outline-success w-100">
+                                <i class="bi bi-people-fill me-1"></i> Manage Faculty
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <a href="{{ url_for('upload_department_circular') }}" class="btn btn-outline-info w-100">
+                                <i class="bi bi-upload me-1"></i> Upload Circular
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <a href="{{ url_for('lab_gallery') }}" class="btn btn-outline-info w-100">
+                                <i class="bi bi-upload me-1"></i> Manage Department Photos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

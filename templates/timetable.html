@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center text-primary mb-4">🕒 Time Table</h2>
+
+    <form method="post" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label>Academic Year</label>
+            <select name="academic_year" class="form-select">
+                <option value="">All Years</option>
+                <option value="2024-25">2024-25</option>
+                <option value="2023-24">2023-24</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Department</label>
+            <select name="department" class="form-select">
+                <option value="">All Departments</option>
+                <option value="Computer">Computer Engineering</option>
+                <option value="Electrical">Electrical Engineering</option>
+                <option value="Civil">Civil Engineering</option>
+                <option value="Mechanical">Mechanical Engineering</option>
+                <option value="Electronics & Communication">Electronics and Communication</option>
+                <option value="CAD&DM">CAD&DM</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Semester</label>
+            <select name="semester" class="form-select">
+                <option value="">All Semesters</option>
+                <option value="1">Sem 1</option>
+                <option value="2">Sem 2</option>
+                <option value="3">Sem 3</option>
+                <option value="4">Sem 4</option>
+                <option value="5">Sem 5</option>
+                <option value="6">Sem 6</option>
+            </select>
+        </div>
+        <div class="text-center mt-3">
+            <button class="btn btn-primary">Load Timetable</button>
+        </div>
+    </form>
+
+    {% if timetables %}
+        {% for t in timetables %}
+        <div class="card p-4 shadow mb-4">
+            <h5>{{ t.title }}</h5>
+            <p><strong>Department:</strong> {{ t.department }} |
+               <strong>Semester:</strong> {{ t.semester }} |
+               <strong>Year:</strong> {{ t.academic_year }}</p>
+            <a href="{{ url_for('static', filename='uploads/' ~ t.filename) }}" class="btn btn-success" download>Download Timetable</a>
+        </div>
+        {% endfor %}
+    {% elif filters_applied %}
+        <p class="text-danger text-center">No timetable found for the selected filters.</p>
+    {% else %}
+        <p class="text-muted text-center">No timetables uploaded yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

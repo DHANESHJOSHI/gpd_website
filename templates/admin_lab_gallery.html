@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Manage Lab Gallery</h2>
+
+    <!-- Upload Form -->
+    <form method="POST" enctype="multipart/form-data" class="mt-4">
+        <div class="mb-3">
+            <label>Department Name:</label>
+            <input type="text" name="department_name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Title:</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Select Image:</label>
+            <input type="file" name="image" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Upload Image</button>
+    </form>
+
+    <!-- Display Images -->
+    <div class="row mt-5">
+        {% for img in images %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/labs/' + img[3]) }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ img[2] }}</h5>
+                    <p>{{ img[1] }} Department</p>
+                    <form method="POST" action="{{ url_for('delete_lab_image', id=img[0]) }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

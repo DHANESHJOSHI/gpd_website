@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h3 class="text-center mb-4 text-primary">📄 Manage Extension of Approval (EoA) Letters</h3>
+
+  <form action="{{ url_for('upload_eoa') }}" method="POST" enctype="multipart/form-data" class="row g-3 mb-5 border p-4 shadow rounded">
+    <div class="col-md-4">
+      <label class="form-label">Academic Year</label>
+      <input type="text" name="academic_year" class="form-control" placeholder="e.g., 2024-2025" required>
+    </div>
+    <div class="col-md-5">
+      <label class="form-label">Upload PDF</label>
+      <input type="file" name="file" class="form-control" accept=".pdf" required>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button type="submit" class="btn btn-primary w-100">Upload</button>
+    </div>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle text-center">
+      <thead class="table-primary">
+        <tr>
+          <th>ID</th>
+          <th>Academic Year</th>
+          <th>File</th>
+          <th>Uploaded On</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for letter in letters %}
+        <tr>
+          <td>{{ letter.id }}</td>
+          <td>{{ letter.academic_year }}</td>
+          <td><a href="{{ url_for('static', filename='uploads/eoa_letters/' ~ letter.file) }}" target="_blank">View PDF</a></td>
+          <td>{{ letter.uploaded_on }}</td>
+          <td>
+            <a href="{{ url_for('delete_eoa', id=letter.id) }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

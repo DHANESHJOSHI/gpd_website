@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Add New Study Material ➕</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea name="description" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Department</label>
+            <input type="text" name="department" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Semester</label>
+            <input type="text" name="semester" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Upload Material (PDF/Docs)</label>
+            <input type="file" name="file" class="form-control" accept=".pdf,.doc,.docx,.ppt,.pptx">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Material</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(to right, #f0f4f8, #ffffff);
+    font-family: 'Poppins', sans-serif;
+  }
+  .card-custom {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #ffffff;
+  }
+  .card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  .card-title {
+    font-weight: 600;
+    color: #0d6efd;
+  }
+  .card-text {
+    color: #555;
+  }
+  .btn-primary {
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .btn-warning {
+    border-radius: 10px;
+    font-weight: 500;
+  }
+  .btn-danger {
+    border-radius: 10px;
+    font-weight: 500;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-semibold text-primary" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="GPD Logo" width="30" height="30" class="me-2">
+      Government Polytechnic Dahod
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        {% if 'admin_id' in session %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Admin Login</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <h2 class="text-center mb-5 text-dark fw-bold">Welcome, {{ session.admin_name }} 👋</h2>
+
+  <div class="row g-4">
+    {% set panels = [
+      ('Manage Circulars', 'Add, Edit or Delete college and department circulars.', '/manage-circulars'),
+      ('Manage Subjects', 'Add, Edit or Delete subjects semester-wise and department-wise.', '/manage-subjects'),
+      ('Manage Study Materials', 'Upload and manage study material files for students.', '/manage-materials'),
+      ('🎓 Manage Alumni', 'Approve or reject alumni registrations.', url_for('admin_alumni')),
+      ('📰 Manage Newsletters', 'Upload Institute Newsletters.', url_for('upload_newsletter')),
+      ('Manage Lab Gallery 🏢', 'Add or delete department lab images.', url_for('admin_lab_gallery')),
+      ('🕒 Manage Timetables', 'Upload and update academic timetables for departments and semesters.', '/admin/timetable'),
+      ('📅 Manage Academic Calendar', 'Upload or update the official academic calendar.', '/admin/calendar'),
+      ('Manage EoA Letters', 'Upload and manage Extension of Approval documents for each academic year.', url_for('eoa_dashboard')),
+      ('Manage GTU Affiliation Letters', 'Upload and manage GTU Affiliation Letters.', url_for('manage_gtu_letters'))
+
+
+    ] %}
+
+    {% for title, desc, link in panels %}
+    <div class="col-md-4">
+      <div class="card card-custom h-100 text-center p-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ title }}</h5>
+          <p class="card-text">{{ desc }}</p>
+          <a href="{{ link }}" class="btn btn-primary">Manage</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- Logout Button -->
+    <div class="col-md-12 mt-4 text-center">
+      <a href="{{ url_for('logout') }}" class="btn btn-danger px-5 py-2">Logout</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

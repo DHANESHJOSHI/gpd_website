@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Manage Study Materials 📄</h2>
+
+    <div class="text-end mb-3">
+        <a href="{{ url_for('add_material') }}" class="btn btn-success">Add New Material</a>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Department</th>
+                    <th>Semester</th>
+                    <th>File</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in materials %}
+                <tr>
+                    <td>{{ m[1] }}</td>
+                    <td>{{ m[2] }}</td>
+                    <td>{{ m[3] }}</td>
+                    <td>{{ m[4] }}</td>
+                    <td>
+                        {% if m[5] %}
+                        <a href="{{ url_for('static', filename='materials/' + m[5]) }}" target="_blank">View</a>
+                        {% else %}
+                        No File
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('delete_material', material_id=m[0]) }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this material?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

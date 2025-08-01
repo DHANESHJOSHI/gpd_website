@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Faculty</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font and Tag Input Style -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .form-label {
+            font-weight: 500;
+        }
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            border: 1px solid #ced4da;
+            padding: 8px;
+            border-radius: 5px;
+            background: white;
+        }
+        .tag-container input {
+            border: none;
+            outline: none;
+            flex: 1;
+        }
+        .tag {
+            background: #0d6efd;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .tag i {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card p-4">
+                <h3 class="text-center text-primary mb-4">Add New Faculty</h3>
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Designation</label>
+                            <input type="text" name="designation" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Qualification</label>
+                            <input type="text" name="qualification" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="text" name="mobile_number" class="form-control" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+    <label class="form-label">Department</label>
+    <input type="text" class="form-control" value="{{ department_name }}" readonly>
+    <input type="hidden" name="department_name" value="{{ department_name }}">
+</div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Photo</label>
+                            <input type="file" name="photo" class="form-control">
+                        </div>
+
+                        <!-- Multi-entry Fields -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expertise</label>
+                            <div class="tag-container" data-name="expertise"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Subjects Taught</label>
+                            <div class="tag-container" data-name="subjects_taught"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Experience</label>
+                            <input type="text" name="experience" class="form-control" placeholder="e.g. 10 years">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Research Interests</label>
+                            <div class="tag-container" data-name="research_interests"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Publications</label>
+                            <div class="tag-container" data-name="publications"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Awards</label>
+                            <div class="tag-container" data-name="awards"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Workshops</label>
+                            <div class="tag-container" data-name="workshops"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Certifications</label>
+                            <div class="tag-container" data-name="certifications"></div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Additional Roles</label>
+                            <div class="tag-container" data-name="additional_roles"></div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary px-4">Add Faculty</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS: Bootstrap and Tag Input Handling -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Convert tag container into comma-separated hidden inputs
+    document.querySelectorAll('.tag-container').forEach(container => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.classList.add('form-control');
+        input.placeholder = 'Type and press Enter';
+        container.appendChild(input);
+
+        const hidden = document.createElement('input');
+        hidden.type = 'hidden';
+        hidden.name = container.dataset.name;
+        container.parentNode.appendChild(hidden);
+
+        const tags = [];
+
+        function updateHidden() {
+            hidden.value = tags.join(',');
+        }
+
+        input.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && input.value.trim() !== '') {
+                e.preventDefault();
+                const tagText = input.value.trim();
+                tags.push(tagText);
+                const tag = document.createElement('div');
+                tag.className = 'tag';
+                tag.innerHTML = `${tagText} <i class="bi bi-x" onclick="this.parentElement.remove(); removeTag('${tagText}', '${container.dataset.name}')"></i>`;
+                container.insertBefore(tag, input);
+                input.value = '';
+                updateHidden();
+            }
+        });
+
+        window.removeTag = (text, name) => {
+            const idx = tags.indexOf(text);
+            if (idx !== -1) {
+                tags.splice(idx, 1);
+                document.querySelector(`input[name="${name}"]`).value = tags.join(',');
+            }
+        };
+    });
+</script>
+
+</body>
+</html>

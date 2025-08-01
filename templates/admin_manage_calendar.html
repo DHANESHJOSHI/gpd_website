@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-4">
+    <h3>Manage Academic Calendars</h3>
+    <form method="post" enctype="multipart/form-data" action="{{ url_for('upload_calendar') }}">
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <input type="text" name="title" class="form-control" placeholder="Title" required>
+        </div>
+        <div class="col-md-2">
+            <select name="term" class="form-control" required>
+                <option value="" disabled selected>Select Term</option>
+                <option value="Odd">Odd</option>
+                <option value="Even">Even</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="session" class="form-control" placeholder="Session (e.g., 2024-25)" required>
+        </div>
+        <div class="col-md-3">
+            <input type="file" name="file" class="form-control" required>
+        </div>
+    </div>
+    <button class="btn btn-success" type="submit">Upload</button>
+</form>
+
+
+    <hr>
+
+    <table class="table mt-3 table-bordered">
+        <thead><tr><th>Title</th><th>Semester</th><th>Session</th><th>Download</th><th>Action</th></tr></thead>
+        <tbody>
+            {% for cal in calendars %}
+            <tr>
+                <td>{{ cal.title }}</td>
+                <td>{{ cal.term }}</td>
+                <td>{{ cal.session }}</td>
+                <td><a href="{{ url_for('static', filename='uploads/Academic_Calenders/' ~ cal.filename) }}" download>Download</a></td>
+                <td><a href="{{ url_for('delete_calendar', id=cal.id) }}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

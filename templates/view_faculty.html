@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">👨‍🏫 Our Faculty</h2>
+
+    <div class="row g-4">
+        {% for f in faculty %}
+        <div class="col-md-4">
+            <div class="card h-100 text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ f[1] }}</h5>
+                    <p class="card-text"><strong>Department:</strong> {{ f[2] }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ f[3] }}</p>
+                    <p class="card-text"><strong>Phone:</strong> {{ f[4] }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('student_corner') }}" class="btn btn-secondary">⬅ Back to Student Corner</a>
+    </div>
+</div>
+{% endblock %}

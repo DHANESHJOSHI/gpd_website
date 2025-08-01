@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4 text-primary">Manage Lab Gallery 🖼️</h2>
+
+    <!-- Upload Form -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Image</label>
+                    <input type="file" name="image" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload Photo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gallery Display -->
+    <div class="row">
+        {% for photo in photos %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ url_for('static', filename=photo.image_path) }}" class="card-img-top" style="max-height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ photo.title }}</h5>
+                    <form method="POST" action="{{ url_for('delete_lab_photo', photo_id=photo.id) }}" onsubmit="return confirm('Are you sure you want to delete this photo?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-muted">No photos uploaded yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">Manage Subjects 📚</h2>
+        <a class="btn btn-secondary" href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+    </div>
+
+    <!-- Filters -->
+    <form method="get" action="{{ url_for('manage_subjects') }}" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <select class="form-select" name="department" required>
+                <option value="" disabled selected>Filter by Department</option>
+                {% for dept in departments %}
+                    <option value="{{ dept[0] }}" {% if request.args.get('department') == dept[0] %}selected{% endif %}>
+                        {{ dept[0] }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-select" name="semester" required>
+                <option value="" disabled selected>Filter by Semester</option>
+                {% for sem in range(1, 7) %}
+                    <option value="{{ sem }}" {% if request.args.get('semester') == sem|string %}selected{% endif %}>
+                        Semester {{ sem }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4 d-flex">
+            <button type="submit" class="btn btn-primary me-2">Apply Filter</button>
+            <a href="{{ url_for('manage_subjects') }}" class="btn btn-outline-secondary">Reset</a>
+        </div>
+    </form>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- Add New Button -->
+    <div class="text-end mb-3">
+        <a href="{{ url_for('add_subject') }}" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Add New Subject
+        </a>
+    </div>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Semester</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in subjects %}
+                <tr>
+                    <td>{{ s[1] }}</td>
+                    <td>{{ s[2] }}</td>
+                    <td>{{ s[3] }}</td>
+                    <td class="text-center">
+                        <a href="{{ url_for('delete_subject', subject_id=s[0]) }}" class="btn btn-danger btn-sm"
+                           onclick="return confirm('Delete this subject?');">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted">No subjects found for selected filters.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

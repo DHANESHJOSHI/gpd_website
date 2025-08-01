@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-primary">Faculty Members – {{ department_name }}</h3>
+        <a class="btn btn-primary" href="{{ url_for('add_department_faculty') }}">
+            <i class="bi bi-plus-circle"></i> Add New Faculty
+        </a>
+    </div>
+
+    {% if faculty %}
+    <div class="row g-4">
+        {% for f in faculty %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100 border-0">
+                {% if f.photo %}
+                <img src="{{ url_for('static', filename='uploads/faculty/' ~ f.photo) }}" class="card-img-top" alt="Faculty Photo" style="height: 220px; object-fit: cover;">
+                {% else %}
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 220px;">
+                    <span>No Photo</span>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ f.name }}</h5>
+                    <p class="card-text mb-1"><strong>Designation:</strong> {{ f.designation }}</p>
+                    <p class="card-text"><strong>Email:</strong> {{ f.email }}</p>
+                    <div class="d-flex justify-content-between mt-3">
+                        <a class="btn btn-outline-primary btn-sm" href="{{ url_for('edit_faculty', id=f.id) }}">Edit</a>
+                        <a class="btn btn-outline-danger btn-sm" href="{{ url_for('delete_department_faculty', id=f.id) }}">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="alert alert-info">No faculty members found for the {{ department_name }} department.</div>
+    {% endif %}
+</div>
+
+{% endblock %}

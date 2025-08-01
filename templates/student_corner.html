@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to right, #f8f9fa, #e0f7fa);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h2 {
+        color: #0d6efd;
+        font-weight: 700;
+    }
+    .card {
+        border-radius: 15px;
+        transition: all 0.3s ease-in-out;
+        background-color: #ffffff;
+        border: none;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #084298;
+    }
+    /* Hover dropdowns */
+.nav-item.dropdown.dropdown-hover:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* Remove margin if any */
+}
+.dropdown-hover > .nav-link::after {
+  display: none;
+}
+
+  .fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+
+</style>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      <img src="{{ url_for('static', filename='images/gpd_logo.png') }}" alt="GPD Logo" width="40" height="40" class="me-2">
+      GP Dahod
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+
+        <!-- Departments Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="departmentsDropdown" role="button" data-bs-toggle="dropdown">Departments</a>
+          <ul class="dropdown-menu" aria-labelledby="departmentsDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Computer') }}">Computer Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Civil') }}">Civil Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Electrical') }}">Electrical Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Electronic & Communication') }}">Electronic & Communication</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='Mechanical') }}">Mechanical Engineering</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('department_page', dept_name='CAD&DM') }}">CAD&DM</a></li>
+          </ul>
+        </li>
+
+        <!-- Committees Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="committeeDropdown" role="button" data-bs-toggle="dropdown">Committees</a>
+          <ul class="dropdown-menu" aria-labelledby="committeeDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('internal_complaint_committee') }}">Sexual Harassment & ICC</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('grievance_redressal_committee') }}">Grievance Redressal</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('student_feedback_committee') }}">Student Feedback</a></li>
+          </ul>
+        </li>
+
+        <!-- Facilities Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="facilitiesDropdown" role="button" data-bs-toggle="dropdown">Facilities</a>
+          <ul class="dropdown-menu" aria-labelledby="facilitiesDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('hostel') }}">Hostel</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('library') }}">Library</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('transport') }}">Transportation</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('alumni_list') }}">Alumni</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('student_corner') }}">Student Corner</a></li>
+
+        <!-- Login Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown">Login</a>
+          <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+            <li><a class="dropdown-item" href="/login">Admin Login</a></li>
+            <li><a class="dropdown-item" href="/department_login">Department Login</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container my-5">
+    <h2 class="text-center mb-5">🎓 Student Corner</h2>
+
+    <div class="row g-4">
+
+  <!-- Row 1: Academic Calendar + Time Table -->
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm h-100 text-center p-4">
+      <h4 class="text-primary">📅 Academic Calendar</h4>
+      <p class="my-3">Stay updated with the semester schedules, holidays, and exams.</p>
+      <a href="{{ url_for('academic_calendar') }}" class="btn btn-primary px-4 mt-3">View Calendar</a>
+    </div>
+  </div>
+
+
+  <!-- Row 2: Bus Pass + Hostel Form -->
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm h-100 text-center p-4">
+      <h4 class="text-primary">🚌 Bus Pass Form</h4>
+      <p class="my-3">Download the bus pass form for official use.</p>
+      <a href="{{ url_for('static', filename='uploads/Bus_Pass.pdf') }}" class="btn btn-primary px-4 mt-3" target="_blank" download>Download Form</a>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm h-100 text-center p-4">
+      <h4 class="text-primary">🏠 Hostel Form</h4>
+      <p class="my-3">Download the hostel admission/renewal form from here.</p>
+      <a href="{{ url_for('static', filename='uploads/Hostel_Form.pdf') }}" class="btn btn-primary px-4 mt-3" download>Download Form</a>
+    </div>
+  </div>
+  <!-- Row 3: Enrollment Cancellation -->
+  <div class="col-md-12 col-lg-8">
+    <div class="card shadow-sm h-100 text-center p-4">
+      <h4 class="text-primary">🚫 Enrollment Cancellation</h4>
+      <p class="my-3">Find the latest circular and download the form to cancel enrollment officially.</p>
+      <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="{{ url_for('static', filename='uploads/Circular_of_Enrollment_cancellation.pdf') }}" 
+           class="btn btn-outline-primary px-4" target="_blank">
+           📄 View Circular
+        </a>
+        <a href="{{ url_for('static', filename='uploads/Enrollment-Cancellation-form.pdf') }}" 
+           class="btn btn-primary px-4" download>
+           📥 Download Cancellation Form
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow-sm h-100 text-center p-4">
+      <h4 class="text-primary">Online Fees Payment Steps(SBI Collect)</h4>
+      <p class="my-3">Read steps to pay online fees</p>
+      <a href="{{ url_for('static', filename='uploads/payment_steps.pdf') }}" class="btn btn-primary px-4 mt-3" target="_blank" download>Download Form</a>
+    </div>
+  </div>
+
+  
+
+  <!-- Row 4: Important Links -->
+  <div class="col-12">
+    <div class="card shadow-sm h-100 text-center p-4">
+      <h4 class="text-primary">🔗 Important Links</h4>
+      <p class="my-3">Quick access to essential GTU portals and services.</p>
+      <div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
+        <a href="https://student.gtu.ac.in/" target="_blank" class="btn btn-outline-primary">GTU Portal</a>
+        <a href="https://www.gtu.ac.in/Circular.aspx" target="_blank" class="btn btn-outline-primary">GTU Circulars</a>
+        <a href="https://gtu.ac.in/Exam.aspx" target="_blank" class="btn btn-outline-primary">Exam Forms</a>
+        <a href="https://www.gturesults.in/" target="_blank" class="btn btn-outline-primary">Results</a>
+        <a href="https://www.onlinesbi.sbi/sbicollect/icollecthome.htm" target="_blank" class="btn btn-outline-primary m-2">SBI Collect</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+{% endblock %}

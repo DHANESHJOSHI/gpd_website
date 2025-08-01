@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-lg p-4 border-0">
+        <h3 class="text-primary mb-4">Edit Faculty Information</h3>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" value="{{ faculty.name }}" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Designation</label>
+                    <input type="text" name="designation" value="{{ faculty.designation }}" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" value="{{ faculty.email }}" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Qualification</label>
+                    <input type="text" name="qualification" value="{{ faculty.qualification }}" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Photo (optional)</label>
+                    <input type="file" name="photo" class="form-control">
+                </div>
+                {% if faculty.photo %}
+                <div class="col-md-6">
+                    <label class="form-label d-block">Current Photo</label>
+                    <img src="{{ url_for('static', filename='uploads/faculty/' ~ faculty.photo) }}" alt="Faculty Photo" class="img-thumbnail" style="max-width: 150px;">
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ url_for('department_faculty') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2>Manage Student Achievements 🏆</h2>
+    <form method="POST" enctype="multipart/form-data" class="mb-5">
+        <div class="mb-3">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Description</label>
+            <textarea name="description" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label>Event Name</label>
+            <input type="text" name="event_name" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Student Names</label>
+            <input type="text" name="student_names" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Department</label>
+            <input type="text" name="department" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Date</label>
+            <input type="date" name="date" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Photo (optional)</label>
+            <input type="file" name="photo" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Add Achievement</button>
+    </form>
+
+    <h3 class="mt-5">Existing Achievements</h3>
+    <ul class="list-group">
+        {% for ach in achievements %}
+        <li class="list-group-item">
+            <strong>{{ ach[1] }}</strong> - {{ ach[4] }} ({{ ach[5] }}) <br>
+            {{ ach[2] }} - {{ ach[3] }} on {{ ach[6] }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

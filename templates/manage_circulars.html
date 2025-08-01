@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Circulars - Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 10px 0;
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">GPD Admin Panel</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/dashboard" class="btn btn-light btn-sm me-2">
+                        <i class="bi bi-speedometer2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/add-circular" class="btn btn-success btn-sm">
+                        <i class="bi bi-plus-circle"></i> Add Circular
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <h2 class="text-primary mb-4">📄 Manage Circulars</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Filter Form -->
+    <form method="GET" class="row g-3 mb-4 bg-white p-4 rounded shadow-sm border">
+        <div class="col-md-4">
+            <label for="type" class="form-label">Filter by Type</label>
+            <select class="form-select" name="type" id="type">
+                <option value="">All Types</option>
+                <option value="general" {% if filter_type == 'general' %}selected{% endif %}>General</option>
+                <option value="department" {% if filter_type == 'department' %}selected{% endif %}>Department</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="date" class="form-label">Filter by Date</label>
+            <input type="date" class="form-control" name="date" id="date" value="{{ filter_date }}">
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-filter"></i> Filter</button>
+            <a href="{{ url_for('manage_circulars') }}" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i> Clear</a>
+        </div>
+    </form>
+
+    <!-- Circulars Table -->
+    <div class="table-responsive shadow-sm">
+        <table class="table table-bordered table-hover align-middle bg-white">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Department</th>
+                    <th>File</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in circulars %}
+                <tr>
+                    <td>{{ c['title'] }}</td>
+                    <td>{{ c['description'] }}</td>
+                    <td class="text-capitalize text-center">{{ c['type'] }}</td>
+                    <td class="text-center">{{ c['department'] or '-' }}</td>
+                    <td class="text-center">
+                        {% if c['file'] %}
+                        <a href="{{ url_for('static', filename='uploads/Circulars/' + c['file']) }}" class="btn btn-sm btn-outline-info" target="_blank">
+                            <i class="bi bi-file-earmark-text"></i> View
+                        </a>
+
+                        {% else %}
+                        <span class="text-muted">No file</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-center">{{ c['posted_on'][:10] }}</td>
+                    <td class="text-center">
+                        <a href="{{ url_for('delete_circular', circular_id=c['id']) }}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Are you sure you want to delete this circular?')">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted">No circulars found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-5">
+    <div class="container">
+        <p>© 2025 Government Polytechnic Dahod | Admin Panel</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
