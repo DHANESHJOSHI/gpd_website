@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hostel Information | Government Polytechnic Dahod</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #e3f2fd, #ffffff);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .section-title {
+      border-left: 6px solid #0d6efd;
+      padding-left: 15px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .carousel-inner img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 50px;
+    }
+    /* Hover dropdowns */
+.nav-item.dropdown.dropdown-hover:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* Remove margin if any */
+}
+.dropdown-hover > .nav-link::after {
+  display: none;
+}
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      <img src="../static/images/gpd_logo.png" alt="GPD Logo" width="40" height="40" class="me-2">
+      GP Dahod
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+
+        <!-- Departments Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="departmentsDropdown" role="button" data-bs-toggle="dropdown">Departments</a>
+          <ul class="dropdown-menu" aria-labelledby="departmentsDropdown">
+            <li><a class="dropdown-item" href="/department/Computer">Computer Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/Civil">Civil Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/Electrical">Electrical Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/Electronic%20&amp;%20Communication">Electronic & Communication</a></li>
+            <li><a class="dropdown-item" href="/department/Mechanical">Mechanical Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/CAD&amp;DM">CAD&DM</a></li>
+          </ul>
+        </li>
+
+        <!-- Committees Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="committeeDropdown" role="button" data-bs-toggle="dropdown">Committees</a>
+          <ul class="dropdown-menu" aria-labelledby="committeeDropdown">
+            <li><a class="dropdown-item" href="/committee/internal-complaint">Sexual Harassment & ICC</a></li>
+            <li><a class="dropdown-item" href="/committee/grievance_redressal_committee">Grievance Redressal</a></li>
+            <li><a class="dropdown-item" href="/committee/student_feedback_committee">Student Feedback</a></li>
+          </ul>
+        </li>
+
+        <!-- Facilities Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="facilitiesDropdown" role="button" data-bs-toggle="dropdown">Facilities</a>
+          <ul class="dropdown-menu" aria-labelledby="facilitiesDropdown">
+            <li><a class="dropdown-item" href="/hostel">Hostel</a></li>
+            <li><a class="dropdown-item" href="/library">Library</a></li>
+            <li><a class="dropdown-item" href="/transport">Transportation</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/alumni">Alumni</a></li>
+        <li class="nav-item"><a class="nav-link" href="/student-corner">Student Corner</a></li>
+
+        <!-- Login Dropdown -->
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown">Login</a>
+          <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+            <li><a class="dropdown-item" href="/login">Admin Login</a></li>
+            <li><a class="dropdown-item" href="/department_login">Department Login</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container my-5">
+  <h2 class="text-center text-primary mb-4">🏨 Hostel Facilities</h2>
+  <p class="lead text-center mb-5">
+    Government Polytechnic Dahod provides well-maintained hostel facilities for both boys and girls. Our hostels ensure a safe, secure, and comfortable environment that fosters academic excellence and personal growth.
+  </p>
+
+  <!-- Boys Hostel Section -->
+  <div class="section-title">🏢 Boys Hostel</div>
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6">
+      <div id="boysHostelCarousel" class="carousel slide shadow" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../static/images/hostel/boys1.jpg" class="d-block w-100" alt="Boys Hostel 1">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/boys2.jpg" class="d-block w-100" alt="Boys Hostel 2">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/boys3.jpg" class="d-block w-100" alt="Boys Hostel 3">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/boys4.jpg" class="d-block w-100" alt="Boys Hostel 4">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/boys5.jpg" class="d-block w-100" alt="Boys Hostel 5">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#boysHostelCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#boysHostelCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">📌 <strong>Rooms:</strong> 40</li>
+        <li class="list-group-item">👨‍🎓 <strong>Capacity:</strong> 120 students</li>
+        <li class="list-group-item">🏠 <strong>Facilities:</strong> Common room, mess, purified drinking water</li>
+        <li class="list-group-item">🔒 <strong>Security:</strong> 24x7 surveillance and warden supervision</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Girls Hostel Section -->
+  <div class="section-title">🏢 Girls Hostel</div>
+  <div class="row align-items-center mb-5">
+    <div class="col-md-6 order-md-2">
+      <div id="girlsHostelCarousel" class="carousel slide shadow" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../static/images/hostel/girls1.jpg" class="d-block w-100" alt="Girls Hostel 1">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls2.jpg" class="d-block w-100" alt="Girls Hostel 2">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls3.jpg" class="d-block w-100" alt="Girls Hostel 3">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls4.jpg" class="d-block w-100" alt="Girls Hostel 4">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls5.jpg" class="d-block w-100" alt="Girls Hostel 5">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls6.jpg" class="d-block w-100" alt="Girls Hostel 6">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls7.jpg" class="d-block w-100" alt="Girls Hostel 7">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls8.jpg" class="d-block w-100" alt="Girls Hostel 8">
+          </div>
+          <div class="carousel-item">
+            <img src="../static/images/hostel/girls9.jpg" class="d-block w-100" alt="Girls Hostel 9">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#girlsHostelCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#girlsHostelCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6 order-md-1">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">🏫 <strong>Old Hostel Rooms:</strong> 16</li>
+        <li class="list-group-item">🏫 <strong>New Hostel Rooms:</strong> 20</li>
+        <li class="list-group-item">👩‍🎓 <strong>Total Capacity:</strong> 108 students</li>
+        <li class="list-group-item">🌟 <strong>Facilities:</strong> Separate mess, reading hall, clean sanitation</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Warden Info -->
+  <div class="section-title">👨‍💼 Hostel Warden Information</div>
+  <div class="card shadow-sm mb-5">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Mr. P. M. Mehta</h5>
+      <p class="card-text mb-1"><strong>Position:</strong> Rector</p>
+      <h5 class="card-title text-primary">Mr. M. T. Rathawa</h5>
+      <p class="card-text mb-1"><strong>Position:</strong>Warden(Boy's Hostel)</p>
+      <h5 class="card-title text-primary">Mrs. U. M. Chaudhary</h5>
+      <p class="card-text mb-1"><strong>Position:</strong>Warden(Girl's Hostel)</p>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div>© 2025 Government Polytechnic Dahod | All Rights Reserved</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

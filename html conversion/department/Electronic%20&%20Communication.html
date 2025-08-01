@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Polytechnic Dahod</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- AOS Library CSS -->
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<style>
+    .faculty-card:hover {
+        transform: scale(1.05);
+        transition: all 0.3s ease-in-out;
+    }
+    .lab-card:hover img {
+        filter: brightness(80%);
+        transition: all 0.3s ease-in-out;
+    }
+    .list-group-item {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+    }
+</style>
+
+
+</head>
+<body>
+      
+    
+<style>
+  #hero-section .overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
+    z-index: 1;
+  }
+
+  #hero-section h1 {
+    z-index: 2;
+  }
+</style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+      <img src="../../static/images/gpd_logo.png" alt="GPD Logo" width="40" height="40" class="me-2">
+      Electronic &amp; Communication Department
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item dropdown dropdown-hover">
+          <a class="nav-link dropdown-toggle" href="#" id="departmentsDropdown" role="button" data-bs-toggle="dropdown">Departments</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/department/Computer">Computer Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/Civil">Civil Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/Electrical">Electrical Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/Electronic%20&amp;%20Communication">Electronic & Communication</a></li>
+            <li><a class="dropdown-item" href="/department/Mechanical">Mechanical Engineering</a></li>
+            <li><a class="dropdown-item" href="/department/CAD&amp;DM">CAD&DM</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="https://attendance-system-1-yqjg.onrender.com/">Attendance</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div style="padding-top: 80px;"></div>
+
+
+<!-- Hero Section -->
+<section id="hero-section" 
+  class="bg-light p-5 text-center text-white shadow-sm d-flex flex-column justify-content-center align-items-center" 
+  style="background-image: url('static/images/campus1.jpg'); background-size: cover; background-position: center; height: 40vh; position: relative;">
+
+  <div style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background-color: rgba(0,0,0,0.5);"></div>
+  <h1 class="fw-bold position-relative">Electronic &amp; Communication Department</h1>
+</section>
+
+
+
+<!-- Department Content -->
+<div class="container py-5">
+
+  <!-- Vision & Mission -->
+  <div class="row text-center mb-5 p-4 rounded section-card fade-in">
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 border-0 shadow vision-box">
+        <div class="card-body">
+          <h4 class="card-title">🎯 Vision</h4>
+          <p class="card-text text-muted">testing</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="card h-100 border-0 shadow mission-box">
+        <div class="card-body">
+          <h4 class="card-title">🚀 Mission</h4>
+          <p class="card-text text-muted">testing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HoD Info -->
+  <div class="row align-items-center mb-5 p-4 rounded shadow-lg section-card fade-in">
+    <h4 class="mb-4">Head of Department 👩‍🏫👨‍🏫</h4>
+    <div class="col-md-3 text-center mb-3 mb-md-0">
+      <img src="../static/uploads/testing" class="img-fluid rounded-circle shadow" style="height:200px; width:200px; object-fit:cover;">
+    </div>
+    <div class="col-md-9">
+      <h5>Urvi.B.Trivedi</h5>
+      <p>Email: <a href="mailto:electronics.gpd@gmail.com">electronics.gpd@gmail.com</a></p>
+    </div>
+  </div>
+
+  <!-- Faculty List -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Faculty Members 👩‍🏫👨‍🏫</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered bg-white shadow-sm">
+        <thead class="table-primary">
+          <tr>
+            <th>Sr. No.</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Qualification</th>
+            <th>Date of Joining</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>1</td>
+            <td>Mrs. U. B. Trivedi</td>
+            <td>Lecturer(I/C HoD)</td>
+            <td>M.E.</td>
+            <td>10-05-2011</td>
+          </tr>
+          
+          <tr>
+            <td>2</td>
+            <td>Mrs. U. M. Chaudhary</td>
+            <td>Lecturer</td>
+            <td>M.E.</td>
+            <td>29-10-2016</td>
+          </tr>
+          
+          <tr>
+            <td>3</td>
+            <td>Mr. M. T. Rathawa</td>
+            <td>Lecturer</td>
+            <td>B.E.</td>
+            <td>27-08-2016</td>
+          </tr>
+          
+          <tr>
+            <td>4</td>
+            <td>Mr. K. R. Chaudhary</td>
+            <td>Lecturer</td>
+            <td>M.E.</td>
+            <td>02-11-2016</td>
+          </tr>
+          
+          <tr>
+            <td>5</td>
+            <td>Mr. M. N. Patel</td>
+            <td>Lecturer</td>
+            <td>M.Tech</td>
+            <td>25-11-2016</td>
+          </tr>
+          
+          <tr>
+            <td>6</td>
+            <td>Mrs. Y. B. Rathod</td>
+            <td>Lecturer</td>
+            <td>M.E.</td>
+            <td>01-11-2022</td>
+          </tr>
+          
+          <tr>
+            <td>7</td>
+            <td>Mr. V. C. Dhodi</td>
+            <td>Lecturer</td>
+            <td>B.E.</td>
+            <td>20-01-2022</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Circulars -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Department Circulars 📢</h4>
+    <ul class="list-group list-group-flush">
+      
+    </ul>
+  </div>
+
+  <!-- Subjects -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Subjects Offered 📖</h4>
+    <ul class="nav nav-tabs mb-3" id="semesterTabs" role="tablist">
+      
+      <li class="nav-item">
+        <button class="nav-link active" id="sem1-tab" data-bs-toggle="tab" data-bs-target="#sem1" type="button" role="tab">
+          Semester 1
+        </button>
+      </li>
+      
+      <li class="nav-item">
+        <button class="nav-link " id="sem2-tab" data-bs-toggle="tab" data-bs-target="#sem2" type="button" role="tab">
+          Semester 2
+        </button>
+      </li>
+      
+      <li class="nav-item">
+        <button class="nav-link " id="sem3-tab" data-bs-toggle="tab" data-bs-target="#sem3" type="button" role="tab">
+          Semester 3
+        </button>
+      </li>
+      
+      <li class="nav-item">
+        <button class="nav-link " id="sem4-tab" data-bs-toggle="tab" data-bs-target="#sem4" type="button" role="tab">
+          Semester 4
+        </button>
+      </li>
+      
+      <li class="nav-item">
+        <button class="nav-link " id="sem5-tab" data-bs-toggle="tab" data-bs-target="#sem5" type="button" role="tab">
+          Semester 5
+        </button>
+      </li>
+      
+      <li class="nav-item">
+        <button class="nav-link " id="sem6-tab" data-bs-toggle="tab" data-bs-target="#sem6" type="button" role="tab">
+          Semester 6
+        </button>
+      </li>
+      
+    </ul>
+    <div class="tab-content">
+      
+      <div class="tab-pane fade show active" id="sem1" role="tabpanel">
+        <ul class="list-group list-group-flush">
+          
+          <li class="list-group-item text-muted">No subjects available for Semester 1</li>
+          
+        </ul>
+      </div>
+      
+      <div class="tab-pane fade " id="sem2" role="tabpanel">
+        <ul class="list-group list-group-flush">
+          
+          
+          
+        </ul>
+      </div>
+      
+      <div class="tab-pane fade " id="sem3" role="tabpanel">
+        <ul class="list-group list-group-flush">
+          
+          
+          
+        </ul>
+      </div>
+      
+      <div class="tab-pane fade " id="sem4" role="tabpanel">
+        <ul class="list-group list-group-flush">
+          
+          
+          
+        </ul>
+      </div>
+      
+      <div class="tab-pane fade " id="sem5" role="tabpanel">
+        <ul class="list-group list-group-flush">
+          
+          
+          
+        </ul>
+      </div>
+      
+      <div class="tab-pane fade " id="sem6" role="tabpanel">
+        <ul class="list-group list-group-flush">
+          
+          
+          
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Study Materials -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Study Materials 📚</h4>
+    <ul class="list-group list-group-flush">
+      
+    </ul>
+  </div>
+
+  <!-- Labs -->
+  <div class="row mb-5 p-4 rounded section-card fade-in">
+    <h4 class="mb-4">Lab Gallery 🏫</h4>
+    
+      
+        
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm border-0">
+            <img src="../static/images/labs/ec_1.jpg" class="card-img-top" style="height: 250px; object-fit: cover;" alt="EC Lab 1">
+            <div class="card-body">
+              <h5 class="card-title text-center">EC Lab 1</h5>
+            </div>
+          </div>
+        </div>
+      
+        
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm border-0">
+            <img src="../static/images/labs/ec_2.jpg" class="card-img-top" style="height: 250px; object-fit: cover;" alt="EC Lab 2">
+            <div class="card-body">
+              <h5 class="card-title text-center">EC Lab 2</h5>
+            </div>
+          </div>
+        </div>
+      
+        
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm border-0">
+            <img src="../static/images/labs/ec_3.jpg" class="card-img-top" style="height: 250px; object-fit: cover;" alt="EC Lab 3">
+            <div class="card-body">
+              <h5 class="card-title text-center">EC Lab 3</h5>
+            </div>
+          </div>
+        </div>
+      
+    
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center p-3 fade-in">
+  <p class="mb-1">Government Polytechnic Dahod | Address | Contact: 1234567890 | Email: info@gp.dahod.in</p>
+  <div>
+    <a href="#" class="text-white me-2">Facebook</a> |
+    <a href="#" class="text-white ms-2">Instagram</a>
+  </div>
+</footer>
+
+<!-- Style -->
+<style>
+.main-bg {
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+}
+.section-heading {
+  color: #0d6efd;
+  font-weight: bold;
+}
+.section-card {
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+.vision-box {
+  border-left: 5px solid #0077b6;
+}
+.mission-box {
+  border-left: 5px solid #00b4d8;
+}
+.card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#hero-section .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+#hero-section h1 {
+  z-index: 1;
+  position: relative;
+}
+</style>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Library JS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,  // animation duration
+        once: true       // only animate once
+    });
+</script>
+
+</body>
+</html>
